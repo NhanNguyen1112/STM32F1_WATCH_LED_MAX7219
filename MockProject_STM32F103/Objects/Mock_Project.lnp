@@ -1,0 +1,18 @@
+--cpu Cortex-M3
+".\objects\main.o"
+".\objects\app_function.o"
+".\objects\uart.o"
+".\objects\spi.o"
+".\objects\timer.o"
+".\objects\nvic.o"
+".\objects\clock.o"
+".\objects\gpio.o"
+".\objects\softtimer.o"
+".\objects\led_max7219.o"
+".\objects\string.o"
+".\objects\startup_stm32f10x_md.o"
+".\objects\system_stm32f10x.o"
+--strict --scatter ".\Objects\Mock_Project.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\Mock_Project.map" -o .\Objects\Mock_Project.axf
