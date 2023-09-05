@@ -2,7 +2,7 @@
 #ifndef __String__
 #define __String__
 
-unsigned char strcmp(const unsigned char *S1, const unsigned char *S2);
+unsigned char str_cmp(const unsigned char *S1, const unsigned char *S2);
 int str_len(const char *src);
 void str_cpy(char *dest, const char *src, const char len);
 void str_cat(char *dest, const char *src);

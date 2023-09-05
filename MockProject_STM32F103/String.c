@@ -1,7 +1,7 @@
 
 #include "String.h"
 
-unsigned char strcmp(const unsigned char *S1, const unsigned char *S2)
+unsigned char str_cmp(const unsigned char *S1, const unsigned char *S2)
 {
   unsigned char Flag_Check=1;
   unsigned char count=0;

@@ -1,6 +1,6 @@
 
-#ifndef __UART_V2__ 
-#define __UART_V2__
+#ifndef __UART__ 
+#define __UART__
 
 #include "STM32F1XX.h"
 #include "UART_Register.h"
@@ -35,9 +35,9 @@ void Uart_RxMainFunction ( void );
 void USART1_IRQHandler(void);
 
 /* MAIN TEST */
-void UART_V2_MAIN_TEST(void);
+void UART_MAIN_TEST(void);
 
 
-#endif /* __UART_V2__ */
+#endif /* __UART__ */
 
 

@@ -113,9 +113,9 @@ void Uart_TxMainFunction ( void )
 
 unsigned int Uart_GetReceiveData ( unsigned char * u8_RxBuffer )
 {
-	static unsigned int LengthCount=0;
+	static unsigned char LengthCount=0;
 
-	if(Receive_State == NOT_EMP)
+	if( (Receive_State == NOT_EMP))
 	{
 		if(Index_Read != Index_Write)
 		{
@@ -123,15 +123,15 @@ unsigned int Uart_GetReceiveData ( unsigned char * u8_RxBuffer )
 			LengthCount++;
 
 			if( Index_Read>=(UART_BUFFER_SIZE-1) ) Index_Read=0;
-			else Index_Read++;					
+			else Index_Read++;	
 		}
 		else 
 		{
 			LengthBufferRead = LengthCount;
+			LengthCount=0;
 			Receive_State = EMPTY;
 		}
 	}
-	else LengthCount=0;
 
 	return LengthBufferRead;
 }
@@ -152,41 +152,60 @@ void Uart_RxMainFunction ( void )
 }
 
 /*=============================================================================
-							MAIN UART TEST
+							        MAIN UART TEST
 =============================================================================*/
 
 static unsigned char TestDataSend[5]= {'A','B','C','D','-'};
 static unsigned char TestReadData[20];
-unsigned int CheckRead=0;
+unsigned int length=0;
 
-void UART_V2_MAIN_TEST(void)
+void UART_MAIN_TEST(void)
 {
   InitClockHSE();
   TIM2_Init();
 	USART1_Init();
 
-  Enable_Disable_Clock_PortB(Enable);
-  SetPinInput(PORTB,PIN6,InputPullUp_PullDown,PullUp);
-  SetPinInput(PORTB,PIN7,InputPullUp_PullDown,PullUp);
+	Enable_Disable_Clock_PortC(Enable);
+
+	SetPinOutput(PORTC,PIN13,OpenDrain);
+	WritePin(PORTC,PIN13,HIGH);
+
+  SetPinInput(PORTA,PIN2,InputPullUp_PullDown,PullUp);
+  SetPinInput(PORTA,PIN3,InputPullUp_PullDown,PullUp);
 	
 	while(1)
 	{
-    if( ReadPin(PORTB,PIN6) == 0 )
-    {
-      Uart_Transmit(TestDataSend,sizeof(TestDataSend));
-    }
+    // if( ReadPin(PORTA,PIN2) == 0 )
+    // {
+
+		if( Uart_GetReceiveState() == NOT_EMP )
+		{
+			length = Uart_GetReceiveData(TestReadData);
+		}			
+		else 
+		{
+			if(length!=0)
+			{
+				WritePin(PORTC,PIN13,LOW);
+				Delay_TIM2_ms(3000);
+				WritePin(PORTC,PIN13,HIGH);
+
+				length=0;
+				BufferClear(TestReadData,sizeof(TestReadData));
+			}
+		}
+
+
+
+      // Uart_Transmit(TestDataSend,sizeof(TestDataSend));
+    // }
 
 		// if( Uart_GetReceiveState() == EMPTY )
 		// {
 		// 	Uart_GetReceiveData(TestReadData);
 		// }
-
-    //if( ReadPin(PORTB,PIN7) == 0 )
-		//{
-			Uart_GetReceiveData(TestReadData);
-		//}	
 		
-		Uart_TxMainFunction();
+		// Uart_TxMainFunction();
 		
 		Delay_TIM2_ms(2);
 		

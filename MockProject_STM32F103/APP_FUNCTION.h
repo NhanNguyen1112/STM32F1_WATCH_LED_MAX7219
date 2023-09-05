@@ -16,6 +16,7 @@ typedef struct
 
 typedef enum 
 {
+  ZERO,
   AM,
   PM,
   HG,

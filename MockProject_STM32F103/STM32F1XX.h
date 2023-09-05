@@ -42,19 +42,19 @@ typedef unsigned char 	uint8_t;
 /*==================================================================================================
 *                                        ENUMS
 ==================================================================================================*/
-typedef enum 
+typedef enum DigitalState_enum
 {
 	LOW,
 	HIGH
 }DigitalState_enum;
 
-typedef enum
+typedef enum SetClear_enum
 {
 	Disable,
 	Enable
 }SetClear_enum;
 
-typedef enum 
+typedef enum OutputMode_enum
 {
 	PushPull,
 	OpenDrain,
@@ -62,21 +62,21 @@ typedef enum
 	Alternate_OpenDrain
 }OutputMode_enum;
 
-typedef enum 
+typedef enum InputMode_enum
 {
 	AnalogMode,
 	FloatingInput,
 	InputPullUp_PullDown
 }InputMode_enum;
 
-typedef enum 
+typedef enum UpDown_enum
 {
 	No,
 	PullUp,
 	PullDown
 }UpDown_enum;
 
-typedef enum 
+typedef enum PinMode_enum
 {
 	OUTPUT,
 	INPUT
