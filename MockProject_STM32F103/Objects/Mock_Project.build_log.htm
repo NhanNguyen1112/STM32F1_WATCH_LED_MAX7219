@@ -39,18 +39,15 @@ APP_FUNCTION.c(2): warning: In file included from...
 ./SPI.h(17): warning: // comments are not allowed in this language [-Wcomment]
 // #define Slave_Config
 ^
-APP_FUNCTION.c(84): warning: unused function 'F_SaveTime' [-Wunused-function]
-static void F_SaveTime(DayTime_typedef TimeSave)
-            ^
-APP_FUNCTION.c(89): warning: unused function 'F_SetTimer' [-Wunused-function]
-static void F_SetTimer(DayTime_typedef TimerSet)
-            ^
-4 warnings generated.
+APP_FUNCTION.c(163): warning: result of comparison of unsigned expression >= 0 is always true [-Wtautological-unsigned-zero-compare]
+    if( (Time->Hour>=0) && (Time->Hour<=23) ) Result=TRUE;
+         ~~~~~~~~~~^ ~
+3 warnings generated.
 compiling APP_FUNCTION.c...
 linking...
-Program Size: Code=7524 RO-data=252 RW-data=0 ZI-data=1808  
+Program Size: Code=9616 RO-data=268 RW-data=4 ZI-data=1836  
 FromELF: creating hex file...
-".\Objects\Mock_Project.axf" - 0 Error(s), 4 Warning(s).
+".\Objects\Mock_Project.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -81,7 +78,7 @@ Package Vendor: Keil
       Source file:   Device/Source/ARM/STM32F1xx_OPT.s
       Include file:  RTE_Driver/Config/RTE_Device.h
       Source file:   Device/Source/ARM/startup_stm32f10x_md.s
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>
